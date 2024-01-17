@@ -1,7 +1,3 @@
-/**
- * @author Taruna
- */
-
 let messages = {
   TemplateAlreadyExists: "Template already exists",
   TemplateCreatedSuccess: "Template added successfully",

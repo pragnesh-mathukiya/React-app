@@ -2,9 +2,6 @@
 /**
  * fileNameGenerator()
  * @param {*} req: n is number of character you want
- * Created Date : 31Aug2022
- * Last updated :
- * Developer : Lalit
  */
 function videoFileNameGenerator(type, n, fname) {
     let randomString = '';
