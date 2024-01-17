@@ -1,0 +1,43 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "This project contains server side development of a marketplace where users can connect with other individuals and communities to collaborate on projects.",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha",
+    "dev": "nodeEnv=dev nodemon --exec node server.js",
+    "prod": "nodeEnv=production nodemon --exec node production.js"
+  },
+  "author": "User",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.987.0",
+    "axios": "^0.27.2",
+    "bcryptjs": "^2.4.3",
+    "bluebird": "^3.7.2",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.8",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.4.0",
+    "fcm-node": "^1.6.1",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.13.2",
+    "mongoose-slug-generator": "^1.0.4",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.4.17",
+    "pubnub": "^7.2.0",
+    "stripe": "^10.8.0",
+    "swagger-ui-express": "^4.5.0",
+    "twilio": "^3.80.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^8.4.0",
+    "nodemon": "^2.0.7"
+  }
+}

@@ -1,0 +1,126 @@
+@font-face {
+  font-family: "Product Sans Regular";
+  src: url("../fonts/ProductSans-Regular.eot");
+  src: url("../fonts/ProductSans-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/ProductSans-Regular.woff2") format("woff2"),
+    url("../fonts/ProductSans-Regular.woff") format("woff"),
+    url("../fonts/ProductSans-Regular.ttf") format("truetype"),
+    url("../fonts/ProductSans-Regular.svg#ProductSans-Regular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Product Sans Black";
+  src: url("../fonts/ProductSans-Black.eot");
+  src: url("../fonts/ProductSans-Black.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/ProductSans-Black.woff2") format("woff2"),
+    url("../fonts/ProductSans-Black.woff") format("woff"),
+    url("../fonts/ProductSans-Black.ttf") format("truetype"),
+    url("../fonts/ProductSans-Black.svg#ProductSans-Black") format("svg");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Product Sans Light";
+  src: url("../fonts/ProductSans-Light.eot");
+  src: url("../fonts/ProductSans-Light.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/ProductSans-Light.woff2") format("woff2"),
+    url("../fonts/ProductSans-Light.woff") format("woff"),
+    url("../fonts/ProductSans-Light.ttf") format("truetype"),
+    url("../fonts/ProductSans-Light.svg#ProductSans-Light") format("svg");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Product Sans Medium";
+  src: url("../fonts/ProductSans-Medium.eot");
+  src: url("../fonts/ProductSans-Medium.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/ProductSans-Medium.woff2") format("woff2"),
+    url("../fonts/ProductSans-Medium.woff") format("woff"),
+    url("../fonts/ProductSans-Medium.ttf") format("truetype"),
+    url("../fonts/ProductSans-Medium.svg#ProductSans-Medium") format("svg");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Product Sans Bold";
+  src: url("../fonts/ProductSans-Bold.eot");
+  src: url("../fonts/ProductSans-Bold.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/ProductSans-Bold.woff2") format("woff2"),
+    url("../fonts/ProductSans-Bold.woff") format("woff"),
+    url("../fonts/ProductSans-Bold.ttf") format("truetype"),
+    url("../fonts/ProductSans-Bold.svg#ProductSans-Bold") format("svg");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Product Sans Thin";
+  src: url("../fonts/ProductSans-Thin.eot");
+  src: url("../fonts/ProductSans-Thin.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/ProductSans-Thin.woff2") format("woff2"),
+    url("../fonts/ProductSans-Thin.woff") format("woff"),
+    url("../fonts/ProductSans-Thin.ttf") format("truetype"),
+    url("../fonts/ProductSans-Thin.svg#ProductSans-Thin") format("svg");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+$PSLight: "Product Sans Light";
+$PSRegular: "Product Sans Regular";
+$PSMedium: "Product Sans Medium";
+$PSThin: "Product Sans Thin";
+$PSBold: "Product Sans Bold";
+$PSBlack: "Product Sans Black";
+$font10: 10px;
+$font12: 12px;
+$font13: 13px;
+$font14: 14px;
+$font15: 15px;
+$font16: 16px;
+$font17: 17px;
+$font18: 18px;
+$font19: 19px;
+$font20: 20px;
+$font21: 21px;
+$font22: 22px;
+$font23: 23px;
+$font24: 24px;
+$font25: 25px;
+$font26: 26px;
+$font27: 27px;
+$font28: 28px;
+$font29: 29px;
+$font30: 30px;
+$font31: 31px;
+$font32: 32px;
+$weight100: 100;
+$weight300: 300;
+$weight400: 400;
+$weight500: 500;
+$weight700: 700;
+$weight900: 900;
+$cblack: #000;
+$cwhite: #ffffff;
+$cblue: #160056;
+$cpink: #f64e60;
+$cltblue: #5c68dc;
+$red: #e62222;
+$clight: rgba(0, 0, 0, 0.2);
+$cdrkblue: #409c8c;
+$cgreen: #1bc5bd;
+$opacity70: 0.7;
+$opacity60: 0.6;
+$opacity50: 0.5;
+$opacity40: 0.4;
+$opacity30: 0.3;

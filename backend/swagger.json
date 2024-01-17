@@ -1,0 +1,2987 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Tapcha",
+    "description": "Tapcha Application API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "tapcha-load-balancer-434008343.us-east-2.elb.amazonaws.com:4456",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "OpenAPI",
+      "description": "Open API for the system"
+    },
+    {
+      "name": "Users",
+      "description": "API for users in the system"
+    },
+    {
+      "name": "Videos",
+      "description": "API for videos in the system"
+    },
+    {
+      "name": "Setting",
+      "description": "API for setting in the system"
+    },
+    {
+      "name": "Comment",
+      "description": "API for comment in the system"
+    },
+    {
+      "name": "Payment",
+      "description": "API for user payment in the system"
+    },
+    {
+      "name": "Chat",
+      "description": "API for user chat in the system"
+    },
+    {
+      "name": "Bookmark",
+      "description": "API for user bookmark in the system"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+    "bearerAuth": {
+      "name": "Authorization",
+      "in": "header",
+      "type": "apiKey",
+      "description": "JWT Authorization header"
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/user/sendOtp": {
+      "post": {
+        "tags": [
+          "OpenAPI"
+        ],
+        "summary": "Send Otp",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "objects with required fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sendOtp"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sendOtp"
+            }
+          }
+        }
+      }
+    },
+    "/user/verifyOtp": {
+      "post": {
+        "tags": [
+          "OpenAPI"
+        ],
+        "summary": "Verify Otp",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "objects with required fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/verifyOtp"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/createUser"
+            }
+          }
+        }
+      }
+    },
+    "/user/createUser": {
+      "post": {
+        "tags": [
+          "OpenAPI"
+        ],
+        "summary": "Register User",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "objects with required fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/createUserReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/createUser"
+            }
+          }
+        }
+      }
+    },
+    "/user/logout": {
+      "get": {
+        "tags": [
+          "Setting"
+        ],
+        "summary": "Logout User",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/user/syncContacts": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Sync User Contacts",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "objects with required fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/syncContactsBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/syncContacts"
+            }
+          }
+        }
+      }
+    },
+    "/user/contacts/{:userId}": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Send Request",
+        "parameters": [
+          {
+            "name": ":userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Reject Request",
+        "parameters": [
+          {
+            "name": ":userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/video/upload": {
+      "post": {
+        "tags": [
+          "Videos"
+        ],
+        "summary": "Upload Video",
+        "parameters": [
+          {
+            "name": "latitude",
+            "in": "header",
+            "description": "latitude for location.",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "longitude",
+            "in": "header",
+            "description": "longitude for location.",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "in": "formData",
+            "name": "video",
+            "type": "file",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "thumbnail",
+            "type": "file",
+            "required": false
+          },
+          {
+            "in": "formData",
+            "name": "caption",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "formData",
+            "name": "category",
+            "type": "string",
+            "required": true,
+            "example": "friend, closeFriend and discovery"
+          },
+          {
+            "in": "formData",
+            "name": "metaData",
+            "type": "object",
+            "required": true,
+            "example": {
+              "duration": 23,
+              "fileName": "abc.mp4",
+              "fileSize": 20
+            }
+          },
+          {
+            "in": "formData",
+            "name": "location",
+            "type": "object",
+            "required": true,
+            "example": {
+              "country": "India",
+              "state": "Gujarat",
+              "city": "Ahmedabad",
+              "geometry": {
+                "longitude": 72.58,
+                "latitude": 23.03
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/user/profile": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get User Profile Detail",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update User Profile",
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "profilePicture",
+            "type": "file"
+          },
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "userName",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "dob",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "dailCode",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "mobileNo",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "specialDates",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string"
+                },
+                "date": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": false
+          },
+          {
+            "in": "formData",
+            "name": "bio",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "location",
+            "type": "object",
+            "required": true,
+            "example": {
+              "country": "India",
+              "state": "Gujarat",
+              "city": "Ahmedabad",
+              "geometry": {
+                "longitude": 72.58,
+                "latitude": 23.03
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/user/newRequest": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get User New request",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "type": "number",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "type": "number",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/user/newRequest/{:userId}": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Accept User request",
+        "parameters": [
+          {
+            "name": ":userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Reject User request",
+        "parameters": [
+          {
+            "name": ":userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/user/updateMobileNumber": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update Mobile number",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "objects with required fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/updateMobileNumber"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/updateMobileNumber"
+            }
+          }
+        }
+      }
+    },
+    "/user/dailyJournal": {
+      "get": {
+        "tags": [
+          "Setting"
+        ],
+        "summary": "Get user daily journal or not",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dailyJournal"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Setting"
+        ],
+        "summary": "Update user daily journal status",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "isDailyJournal",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dailyJournal"
+            }
+          }
+        }
+      }
+    },
+    "/user/notification": {
+      "get": {
+        "tags": [
+          "Setting"
+        ],
+        "summary": "Get user notification received or not",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/notification"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Setting"
+        ],
+        "summary": "Update user notification get status",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "isNotification",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/notification"
+            }
+          }
+        }
+      }
+    },
+    "/user/badge/getAllBadgeList": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get all badge list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/getAllBadgeList"
+            }
+          }
+        }
+      }
+    },
+    "/faq": {
+      "get": {
+        "tags": [
+          "Setting"
+        ],
+        "summary": "Get all FAQ list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/user/report/createReport": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create user report",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "objects with required fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/createReport"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/createReport"
+            }
+          }
+        }
+      }
+    },
+    "/user/deleteAccount": {
+      "delete": {
+        "tags": [
+          "Setting"
+        ],
+        "summary": "Delete Account",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "objects with required fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/deleteAccount"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/user/getFriendList": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get Friend / Close Friend List",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "type",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "all and closeFriend "
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/user/updateFriendStatus": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update Friend Status",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "objects with required fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/updateFriendStatus"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/user/blockUser": {
+      "get": {
+        "tags": [
+          "Setting"
+        ],
+        "summary": "Get Block User List",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/blockUser"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Setting"
+        ],
+        "summary": "Block User",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/blockUser"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Setting"
+        ],
+        "summary": "UnBlock User",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/blockUser"
+            }
+          }
+        }
+      }
+    },
+    "/video/discovery": {
+      "get": {
+        "tags": [
+          "Videos"
+        ],
+        "summary": "Get Discovery video List",
+        "parameters": [
+          {
+            "name": "latitude",
+            "in": "header",
+            "description": "latitude for location.",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "longitude",
+            "in": "header",
+            "description": "longitude for location.",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/video/friends": {
+      "get": {
+        "tags": [
+          "Videos"
+        ],
+        "summary": "Get Friends video List",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/video/closeFriends": {
+      "get": {
+        "tags": [
+          "Videos"
+        ],
+        "summary": "Get Close Friends ( friends & discovery )video List",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/video/reaction": {
+      "get": {
+        "tags": [
+          "Videos"
+        ],
+        "summary": "Get Video Reaction List",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "videoId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "reactionType",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Videos"
+        ],
+        "summary": "Add Video Reaction",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "objects with required fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/reaction"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/reaction"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Videos"
+        ],
+        "summary": "Remove Video Reaction",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "objects with required fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/deleteReaction"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/deleteReaction"
+            }
+          }
+        }
+      }
+    },
+    "/video/reactionCount": {
+      "get": {
+        "tags": [
+          "Videos"
+        ],
+        "summary": "Get Reaction Count",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "videoId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/user/updateFcmToken": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update FCM Token",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "fcmToken",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "platform",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "android",
+                "ios"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UpdateFcmToken"
+            }
+          }
+        }
+      }
+    },
+    "/user/contactUs/sendInquiry": {
+      "post": {
+        "tags": [
+          "Setting"
+        ],
+        "summary": "Send Contact Us Inquiry",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "objects with required fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/contactUsInquiry"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UpdateFcmToken"
+            }
+          }
+        }
+      }
+    },
+    "/video/uploadEvent": {
+      "post": {
+        "tags": [
+          "Videos"
+        ],
+        "summary": "Upload Event User",
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "video",
+            "type": "file",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "thumbnail",
+            "type": "file",
+            "required": false
+          },
+          {
+            "in": "formData",
+            "name": "eventId",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "metaData",
+            "type": "object",
+            "required": true,
+            "example": {
+              "duration": 5,
+              "fileName": "test.mp4",
+              "fileSize": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/video/buddyJournal": {
+      "get": {
+        "tags": [
+          "Videos"
+        ],
+        "summary": "Get Buddy video List",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/video/taggedVideos": {
+      "get": {
+        "tags": [
+          "Videos"
+        ],
+        "summary": "Tagged videos list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/video/cfmVideos": {
+      "get": {
+        "tags": [
+          "Videos"
+        ],
+        "summary": "Close friends wishing on special events Merge videos",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/video/fmVideos": {
+      "get": {
+        "tags": [
+          "Videos"
+        ],
+        "summary": "Friends (individual user videos) wishing on special events",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/video/dailyJournal": {
+      "get": {
+        "tags": [
+          "Videos"
+        ],
+        "summary": "Get Daily Journal Video",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startDate",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/user/getNotificationList": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get Notification List",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/comment": {
+      "post": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Add Comment",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "objects with required fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/comment"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/comment"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Delete Comment",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "commentId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/deleteComment"
+            }
+          }
+        }
+      }
+    },
+    "/commentReply": {
+      "get": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Comment rReplay List",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "commentId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Add Comment Reply",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "objects with required fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/commentReply"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/commentReply"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Delete Comment Reply",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "replyId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/deleteCommentReply"
+            }
+          }
+        }
+      }
+    },
+    "/commentLikeDislike": {
+      "post": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Comment Like Dislike",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "objects with required fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/commentLikeDislike"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/commentLikeDislike"
+            }
+          }
+        }
+      }
+    },
+    "/commentReplyLikeDislike": {
+      "post": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Comment Reply Like Dislike",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "objects with required fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/commentReplyLikeDislike"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/commentReplyLikeDislike"
+            }
+          }
+        }
+      }
+    },
+    "/commentList": {
+      "get": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Comment List",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "videoId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/getCommentList"
+            }
+          }
+        }
+      }
+    },
+    "/commentLikeList": {
+      "get": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Comment Like List",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "commentId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/getCommentLikeList"
+            }
+          }
+        }
+      }
+    },
+    "/replyLikeList": {
+      "get": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Comment Reply Like List",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "replyId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/getReplyLikeList"
+            }
+          }
+        }
+      }
+    },
+    "/video/hashTag": {
+      "get": {
+        "tags": [
+          "Videos"
+        ],
+        "summary": "HashTag Get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "tag",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/user/otherUserProfileDetail": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "HashTag Get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/video/tagFriends": {
+      "get": {
+        "tags": [
+          "Videos"
+        ],
+        "summary": "Tag Friend List",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/user/shareOtp": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Send Otp (Common Share otp)",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "objects with required fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sendOtp"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sendOtp"
+            }
+          }
+        }
+      }
+    },
+    "/user/removeFriend/{:userId}": {
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Remove Friend",
+        "parameters": [
+          {
+            "name": ":userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/user/invite": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Remove Friend",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "dailCode",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "mobileNo",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/video/reportVideo": {
+      "post": {
+        "tags": [
+          "Videos"
+        ],
+        "summary": "Report Video",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "objects with required fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/reportVideo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/video/removeVideo/{:videoId}": {
+      "delete": {
+        "tags": [
+          "Videos"
+        ],
+        "summary": "Remove Video",
+        "parameters": [
+          {
+            "name": ":videoId",
+            "in": "path",
+            "description": "videoId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/video/videoDetail": {
+      "get": {
+        "tags": [
+          "Videos"
+        ],
+        "summary": "Get video detail",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/user/userList": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Search user list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userName",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    },
+    "/payment/createPaymentIntent": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "summary": "Payment create",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "objects with required fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/paymentIntentBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/paymentIntentResponce"
+            }
+          }
+        }
+      }
+    },
+    "/payment/retrievPaymentIntent/{:id}": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "summary": "payment retriew",
+        "parameters": [
+          {
+            "name": ":id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/paymentIntentResponce"
+            }
+          }
+        }
+      }
+    },
+    "/payment/cancelPaymentIntent/{:id}": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "summary": "payment cancel",
+        "parameters": [
+          {
+            "name": ":id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/paymentIntentResponce"
+            }
+          }
+        }
+      }
+    },
+    "/payment/updateStatus/{:id}": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "summary": "payment update status",
+        "parameters": [
+          {
+            "name": ":id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/paymentIntentResponce"
+            }
+          }
+        }
+      }
+    },
+    "/chat": {
+      "get": {
+        "tags": [
+          "Chat"
+        ],
+        "summary": "get chat List",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/chatListResponce"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Chat"
+        ],
+        "summary": "create chat",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "objects with required fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/chatBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/chatResponce"
+            }
+          }
+        }
+      }
+    },
+    "/groupMembersList/{:id}": {
+      "get": {
+        "tags": [
+          "Chat"
+        ],
+        "summary": "get chat List",
+        "parameters": [
+          {
+            "name": ":id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/chatResponce"
+            }
+          }
+        }
+      }
+    },
+    "/updateGroupDetail/{:id}": {
+      "post": {
+        "tags": [
+          "Chat"
+        ],
+        "summary": "get chat List",
+        "parameters": [
+          {
+            "name": ":id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "objects with required fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/updateGroupBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/chatResponce"
+            }
+          }
+        }
+      }
+    },
+    "/joinGroup": {
+      "post": {
+        "tags": [
+          "Chat"
+        ],
+        "summary": "get chat List",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "objects with required fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/joinGroupBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/chatResponce"
+            }
+          }
+        }
+      }
+    },
+    "/leaveGroup": {
+      "delete": {
+        "tags": [
+          "Chat"
+        ],
+        "summary": "get chat List",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "groupId",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "userId",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/chatResponce"
+            }
+          }
+        }
+      }
+    },
+    "/bookmark": {
+      "get": {
+        "tags": [
+          "Bookmark"
+        ],
+        "summary": "get bookmark List",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/bookmarkListResponce"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Bookmark"
+        ],
+        "summary": "Add Bookmark",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "objects with required fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/bookmarkBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/chatResponce"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Bookmark"
+        ],
+        "summary": "Update Bookmark",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "bookmarkId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "objects with required fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/updateBookmarkBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Bookmark"
+        ],
+        "summary": "Delete Bookmark",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "bookmarkId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/responceObject"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "sendOtp": {
+      "type": "object",
+      "properties": {
+        "dailCode": {
+          "type": "string"
+        },
+        "mobileNo": {
+          "type": "string"
+        }
+      }
+    },
+    "verifyOtp": {
+      "type": "object",
+      "properties": {
+        "dailCode": {
+          "type": "string"
+        },
+        "mobileNo": {
+          "type": "string"
+        },
+        "otp": {
+          "type": "string"
+        }
+      }
+    },
+    "createUserReq": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "dob": {
+          "type": "string"
+        },
+        "specialDates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "userName": {
+          "type": "string"
+        },
+        "location": {
+          "type": "object",
+          "properties": {
+            "country": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "address": {
+              "type": "string"
+            },
+            "geometry": {
+              "type": "object",
+              "properties": {
+                "longitude": {
+                  "type": "number"
+                },
+                "latitude": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "bio": {
+          "type": "string"
+        },
+        "dailCode": {
+          "type": "string"
+        },
+        "mobileNo": {
+          "type": "string"
+        }
+      }
+    },
+    "createUser": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "dob": {
+          "type": "string"
+        },
+        "specialDates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "userName": {
+          "type": "string"
+        },
+        "location": {
+          "type": "object",
+          "properties": {
+            "country": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "address": {
+              "type": "string"
+            },
+            "geometry": {
+              "type": "object",
+              "properties": {
+                "longitude": {
+                  "type": "number"
+                },
+                "latitude": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "bio": {
+          "type": "string"
+        },
+        "dailCode": {
+          "type": "string"
+        },
+        "mobileNo": {
+          "type": "string"
+        },
+        "accessToken": {
+          "type": "string"
+        },
+        "profilePicture": {
+          "type": "string"
+        },
+        "streaks": {
+          "type": "number"
+        },
+        "isDailyJournal": {
+          "type": "boolean"
+        },
+        "isNotification": {
+          "type": "boolean"
+        }
+      }
+    },
+    "syncContacts": {
+      "type": "array"
+    },
+    "syncContactsBody": {
+      "type": "array",
+      "properties": {
+        "connections": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "responceObject": {
+      "type": "object"
+    },
+    "dailyJournal": {
+      "type": "object"
+    },
+    "deleteAccount": {
+      "type": "object",
+      "properties": {
+        "deleteReason": {
+          "type": "string"
+        }
+      }
+    },
+    "updateFriendStatus": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "example": "friend and closeFriend"
+        }
+      }
+    },
+    "updateMobileNumber": {
+      "type": "object",
+      "properties": {
+        "otp": {
+          "type": "string"
+        },
+        "mobileNo": {
+          "type": "string"
+        },
+        "dailCode": {
+          "type": "string"
+        }
+      }
+    },
+    "reaction": {
+      "type": "object",
+      "properties": {
+        "videoId": {
+          "type": "string"
+        },
+        "reactionType": {
+          "type": "string"
+        }
+      }
+    },
+    "deleteReaction": {
+      "type": "object",
+      "properties": {
+        "reactionId": {
+          "type": "string"
+        },
+        "videoId": {
+          "type": "string"
+        }
+      }
+    },
+    "createReport": {
+      "type": "object",
+      "properties": {
+        "to": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "contactUsInquiry": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "comment": {
+      "type": "object",
+      "properties": {
+        "videoId": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        }
+      }
+    },
+    "commentReply": {
+      "type": "object",
+      "properties": {
+        "commentId": {
+          "type": "string"
+        },
+        "reply": {
+          "type": "string"
+        }
+      }
+    },
+    "commentLikeDislike": {
+      "type": "object",
+      "properties": {
+        "commentId": {
+          "type": "string"
+        },
+        "isLike": {
+          "type": "boolean"
+        }
+      }
+    },
+    "commentReplyLikeDislike": {
+      "type": "object",
+      "properties": {
+        "replyId": {
+          "type": "string"
+        },
+        "isLike": {
+          "type": "boolean"
+        }
+      }
+    },
+    "hashTagBody": {
+      "type": "object",
+      "properties": {
+        "tag": {
+          "type": "string",
+          "example": "#Hashtag"
+        },
+        "page": {
+          "type": "number"
+        },
+        "count": {
+          "type": "number"
+        }
+      }
+    },
+    "tagFriends": {
+      "type": "object",
+      "properties": {
+        "userName": {
+          "type": "string"
+        },
+        "page": {
+          "type": "number"
+        },
+        "count": {
+          "type": "number"
+        }
+      }
+    },
+    "reportVideo": {
+      "type": "object",
+      "properties": {
+        "reportVideoId": {
+          "type": "string"
+        },
+        "reportReason": {
+          "type": "string"
+        }
+      }
+    },
+    "paymentIntentResponce": {
+      "type": "object",
+      "properties": {
+        "paymentIntentId": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number"
+        },
+        "created": {
+          "type": "number"
+        },
+        "client_secret": {
+          "type": "string"
+        },
+        "payment_method_types": {
+          "type": "array"
+        },
+        "status": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "customer": {
+          "type": "string"
+        },
+        "invoice": {
+          "type": "string"
+        },
+        "receipt_email": {
+          "type": "string"
+        }
+      }
+    },
+    "paymentIntentBody": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "required": true
+        }
+      }
+    },
+    "chatBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "uuid": {
+          "type": "string",
+          "required": true
+        },
+        "type": {
+          "type": "string",
+          "required": true
+        },
+        "users": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "string",
+                "required": true
+              },
+              "role": {
+                "type": "string",
+                "required": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "updateGroupBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "joinGroupBody": {
+      "type": "object",
+      "properties": {
+        "groupId": {
+          "type": "string",
+          "required": true
+        },
+        "users": {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "string",
+              "required": true
+            },
+            "role": {
+              "type": "string",
+              "required": true
+            }
+          }
+        }
+      }
+    },
+    "chatListResponce": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "bookmarkBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "location": {
+          "type": "object",
+          "properties": {
+            "country": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "address": {
+              "type": "string"
+            },
+            "geometry": {
+              "type": "object",
+              "properties": {
+                "longitude": {
+                  "type": "number"
+                },
+                "latitude": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "updateBookmarkBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "bookmarkListResponce": {
+      "type": "object",
+      "properties": {
+        "records": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "bookmarkId": {
+                "type": "string"
+              },
+              "location": {
+                "type": "object",
+                "properties": {
+                  "country": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "geometry": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "longitude": {
+                          "type": "number"
+                        },
+                        "latitude": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "recordsFiltered": {
+          "type": "number"
+        },
+        "recordsTotal": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}

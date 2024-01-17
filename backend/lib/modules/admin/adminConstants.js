@@ -1,0 +1,62 @@
+let messages = {
+  invalidCredentials:
+    "An account with the provided details does not exist. Please try again with valid details",
+  invalidDetails: "Please provide valid details",
+  InvalidVerificationCode: "Please provide a valid OTP",
+  verificationSuccess: "Account verified successfully",
+  userUpdatedSuccess: "User updated successfully",
+  invalidPassword: "Please provide valid password",
+  loginSuccess: "Logged in successfully",
+  emailAlreadyExist: "Email id already exists",
+  mailSuccessVerifyFirst: "Verification mail sended successfully.",
+  logoutSuccess: "Logged out successfully",
+  issueLogout: "There is issue with logout",
+  profileUpdated: "Profile updated successfully",
+  resetPasswordMailSent: "Please check your registered email for further",
+  passwordUpdateSuccess: "Password updated successfully",
+  resetPasswordLinkExpired: "Your reset password link seems to be expired",
+  resetPasswordLinkUsed: "Your reset password link already used",
+  emailResetSuccessful: "Email address updated successfully",
+  contactNumberAlreadyExists: "Contact number already exists",
+  contactResetSuccessful: "Contact number updated successfully",
+  NotificationStatusUpdated: "Notifications marked as read",
+  MultipleActivitiesRemoved: "Activities removed successfully",
+  SingleActivityRemoved: "Activity removed successfully",
+  MailSent: "Mail sent successfully",
+  OldPasswordNotMatch: "Please provide valid old password",
+  emailChangeVerificationSent:
+    "One time password has been sent to your registered email address",
+  contactChangeVerificationSent:
+    "One time password has been sent to your registered contact number",
+  DefaultPasswordReset: "Default password set successfully",
+  RolesAdded: "Roles added successfully",
+  adminAdded: "Admin added successfully",
+  ActivitiesRemoved: "Activities removed successfully",
+  ActivityRemoved: "Activity removed successfully",
+  UserNotFound: "User does not exists",
+  SuccessfullyUploaded: "File Successfully Uploaded",
+  RequestAcceptSuccess: "Request has been accepted successfully",
+  issueUpdate: "There is issue with update",
+  issueCreate: "There is issue with create Admin",
+  profilePictureShouldBeImageType: `Profile picture should be image only`,
+  imageSize: `Profile image size should be maximum ${process.env.image_max_size_mb} mb`,
+  issueLogin: `There is issue with login`,
+  updateStatusIssue: `There is issue with Status update`,
+  updateStatusSuccess: `Status Updated Successfully`,
+  updateStatusActive: `Status Active Successfully`,
+  updateStatusInctive: `Status Inactive Successfully`,
+};
+
+let codes = {
+  FRBDN: 403,
+  INTRNLSRVR: 500,
+  Success: 200,
+  DataNotFound: 404,
+  BadRequest: 400,
+  ReqTimeOut: 408,
+};
+
+module.exports = {
+  CODE: codes,
+  MESSAGE: messages,
+};
